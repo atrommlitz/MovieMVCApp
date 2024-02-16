@@ -1,0 +1,47 @@
+﻿@model MovieCollection
+<h1>Please fill out this form to add movies to the movie collection</h1>
+<!--Make a form for movie collection that posts to a sqllite database with info for
+    movies director, year,rating, edited, length, format, and notes. 
+-->
+<h2>Add New Movie</h2>
+<form method="post">
+    <label asp-for="Title">Title:</label><br>
+    <input asp-for="Title" name="title" required><br><br>
+
+    <label asp-for="Director">Director:</label><br>
+    <input type="text" id="director" name="director" required><br><br>
+
+    <label asp-for="Year">Year:</label><br>
+    <input type="number" id="year" name="year" min="1900" max="2099" required><br><br>
+
+    <label asp-for="Rating">Rating:</label><br>
+    <select id="rating" name="rating" required asp-for="Rating">
+        <option value="G">G</option>
+        <option value="PG">PG</option>
+        <option value="PG-13">PG-13</option>
+        <option value="R">R</option>
+    </select><br><br>
+
+    <label asp-for="Edited">Edited:</label><br>
+    <input type="radio" id="edited_yes" name="edited" value="true" required>
+    <label for="edited_yes">Yes</label>
+    <input type="radio" id="edited_no" name="edited" value="false" required>
+    <label for="edited_no">No</label><br><br>
+
+    <label asp-for="Length">Length (minutes):</label><br>
+    <input type="number" id="length" name="length" min="1" required><br><br>
+
+    <label asp-for="Format">Format:</label><br>
+    <input type="text" id="format" name="format" required><br><br>
+
+    <label asp-for="Genres">Genres:</label><br>
+    <input type="text" id="genres" name="genres" required><br><br>
+
+    <label asp-for="Notes">Notes (Optional, max 25 characters):</label><br>
+    <input type="text" id="notes" name="notes" maxlength="25"><br><br>
+
+    <label asp-for="LentTo">Lent To:</label><br>
+    <input asp-for="LentTo"><br><br>
+
+    <button type="submit">Submit</button>
+</form>
