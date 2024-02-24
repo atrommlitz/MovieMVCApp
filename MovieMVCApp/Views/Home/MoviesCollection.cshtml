@@ -5,17 +5,31 @@
 -->
 <h2>Add New Movie</h2>
 <form method="post">
-    <label asp-for="Title">Title:</label><br>
-    <input asp-for="Title" name="title" required><br><br>
 
-    <label asp-for="Director">Director:</label><br>
-    <input type="text" id="director" name="director" required><br><br>
+    <input type="hidden" asp-for="MovieId" />
+    <br /><br />
+
+    <select asp-for="CategoryId">
+        <option value="">Select a Category</option>
+        @foreach (Mission06_Trommlitz.Models.Category c in ViewBag.Categories)
+        {
+            <option value="@c.CategoryId">@c.CategoryName</option>
+        }
+    </select>
+        <br>
+        <br>
+    <label asp-for="Title">Title:</label><br>
+    <input asp-for="Title" name="title"><br><br>
 
     <label asp-for="Year">Year:</label><br>
-    <input type="number" id="year" name="year" min="1900" max="2099" required><br><br>
+    <input asp-for="Year" type="number" id="year" name="year" min="1888" max="2099"><br><br>
 
+    <label asp-for="Director">Director:</label><br>
+    <input asp-for="Director" name="director">
+
+    <br><br>
     <label asp-for="Rating">Rating:</label><br>
-    <select id="rating" name="rating" required asp-for="Rating">
+    <select id="rating" name="rating" asp-for="Rating">
         <option value="G">G</option>
         <option value="PG">PG</option>
         <option value="PG-13">PG-13</option>
@@ -23,25 +37,27 @@
     </select><br><br>
 
     <label asp-for="Edited">Edited:</label><br>
-    <input type="radio" id="edited_yes" name="edited" value="true" required>
+    <input type="radio" id="edited_yes" asp-for="Edited" value="true">
     <label for="edited_yes">Yes</label>
-    <input type="radio" id="edited_no" name="edited" value="false" required>
+    <input type="radio" id="edited_no" asp-for="Edited" value="false">
     <label for="edited_no">No</label><br><br>
 
-    <label asp-for="Length">Length (minutes):</label><br>
-    <input type="number" id="length" name="length" min="1" required><br><br>
-
-    <label asp-for="Format">Format:</label><br>
-    <input type="text" id="format" name="format" required><br><br>
-
-    <label asp-for="Genres">Genres:</label><br>
-    <input type="text" id="genres" name="genres" required><br><br>
-
-    <label asp-for="Notes">Notes (Optional, max 25 characters):</label><br>
-    <input type="text" id="notes" name="notes" maxlength="25"><br><br>
 
     <label asp-for="LentTo">Lent To:</label><br>
     <input asp-for="LentTo"><br><br>
 
+    <label asp-for="CopiedToPlex">CopiedToPlex:</label>
+    <select asp-for="CopiedToPlex">
+        <option value="false">No</option>
+        <option value="true">Yes</option>
+    </select>
+        <br>
+        <br>
+
+    <label asp-for="Notes">Notes:</label><br>
+    <input asp-for="Notes" type="text" id="notes" name="notes" maxlength="25"><br><br>
+
     <button type="submit">Submit</button>
+
+    <div asp-validation-summary="All"></div>
 </form>

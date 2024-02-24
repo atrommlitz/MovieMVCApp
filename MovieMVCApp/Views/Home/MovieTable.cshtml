@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<MovieCollection>
+
+<div class="container">
+    <h2>Movies</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>CategoryId</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Director</th>
+                <th>Rating</th>
+                <th>Edited</th>
+                <th>LentTo</th>
+                <th>CopiedToPlex</th>
+                <th>Notes</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+            @foreach (var movie in Model)
+            {
+                <tbody>
+                        <tr>
+                            <td>@movie.CategoryId</td>
+                            <td>@movie.Title</td>
+                            <td>@movie.Year</td>
+                            <td>@movie.Director</td>
+                            <td>@movie.Rating</td>
+                            <td>@(movie.Edited ? "Yes" : "No")</td>
+                            <td>@movie.LentTo</td>
+                            <td>@movie.CopiedToPlex</td>
+                            <td>@movie.Notes</td>
+
+                            <td><a class="btn-info btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@movie.MovieId">Edit</a></td>
+                            <td><a class="btn-danger btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@movie.MovieId">Delete</a></td>
+                    </tr>
+                </tbody>
+            }
+    </table>
+</div>
